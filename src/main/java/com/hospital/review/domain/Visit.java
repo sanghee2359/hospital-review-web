@@ -25,9 +25,7 @@ public class Visit {
     @JoinColumn(name="user_id")
     private User userId;
 
-    @ManyToOne
-    @JoinColumn(name="code")
-    private Disease disease;
+    private String disease;
 
     private float amount; //진료비
 }

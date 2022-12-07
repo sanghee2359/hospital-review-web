@@ -36,15 +36,15 @@ public class VisitService {
                         String.format("user : %s은 없습니다.", userName)));
 
         // 질병
-        Disease disease = diseaseRepository.findByCode(code)
+        /*Disease disease = diseaseRepository.findByCode(code)
                 .orElseThrow(()->new HospitalReviewAppException(ErrorCode.DISEASE_NOT_FOUNDED,
                         String.format("해당 %s 질병은 없습니다.", code)));
-
+*/
         // visit
         Visit visit = Visit.builder()
                 .userId(user)
                 .hospitalId(hospital)
-                .disease(disease)
+                .disease(dto.getDisease())
                 .amount(dto.getAmount())
                 .build();
 
