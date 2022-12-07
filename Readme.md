@@ -1,6 +1,6 @@
 # Entity
 ### ERD Diagram
-![img.png](img.png)
+![diagram.png](diagram.png)
 
 # Endpoints
 ### 병원 리뷰 생성기능 && 특정 병원의 리뷰를 조회하는 기능
