@@ -1,5 +1,6 @@
 package com.hospital.review.configuration;
 
+import com.hospital.review.service.UserService;
 import com.hospital.review.service.VisitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,9 +17,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private final VisitService visitService;
-//    @Value("${jwt.token.secret}")
-//    private String secretKey;
+    private final UserService userService;
+    @Value("${jwt.token.secret}")
+    private String secretKey;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -27,13 +28,13 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeRequests()
                 .antMatchers("/api/v1/users/join", "/api/v1/users/login").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/**").authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 // addFilterBefore을 추가하여 Jwt 검증을 먼저 하도록 설정
-//                .addFilterBefore(new JwtTokenFilter(visitService, secretKey), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtTokenFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 }

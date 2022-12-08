@@ -15,9 +15,16 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
-//    @Value("${jwt.token.secret}") // springframework
+    @Value("${jwt.token.secret}") // springframework
     private String key; // 키
     private Long expireTimeMs = 1000 * 60 * 60l; // expireTime : 1hour
+    // userName 가져오기
+    public User getUserByUserName(String userName) {
+        User user = userRepository.findByUserName(userName)
+                .orElseThrow(() -> new HospitalReviewAppException(ErrorCode.USER_NOT_FOUNDED, ""));
+        return user;
+    }
+
     public String join(String userName, String password) {
         // userName이 이미 존재함
         userRepository.findByUserName(userName)
@@ -43,7 +50,7 @@ public class UserService {
             throw new HospitalReviewAppException(ErrorCode.INVALID_PASSWORD,password+"가 틀렸습니다.");
         }
         // 예외가 없다면 토큰 발행
-//        String token = JwtTokenUtil.createToken(selectedUser.getUserName(),key,expireTimeMs);
-        return "token";
+        String token = JwtTokenUtil.createToken(selectedUser.getUserName(),key,expireTimeMs);
+        return token;
     }
 }

@@ -1,25 +1,39 @@
 package com.hospital.review.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
+@Builder
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "nation_wide_hospitals")
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Hospital {
     @Id
     private Long id;
-    private String hospitalName;
+
+    @Column(name = "road_name_address")
     private String roadNameAddress;
 
-    @OneToMany(mappedBy = "hospital",fetch = FetchType.LAZY) // 나중에 getReview를 할 때 쿼리가 날아간다.
+    @Column(name = "hospital_name")
+    private String hospitalName;
+    private Integer patientRoomCount;
+    private Integer totalNumberOfBeds;
+    private String businessTypeName;
+    private Integer businessStatusCode;
+    private Float totalAreaSize;
+
+    @OneToMany(mappedBy = "hospital", fetch = FetchType.LAZY)
     private List<Review> reviews;
+
+/*    public static HospitalResponse of(Hospital hospital) {
+        return new HospitalResponse(hospital.getId(),
+                hospital.getRoadNameAddress(), hospital.getHospitalName(),
+                hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds(), hospital.getBusinessTypeName(),
+                hospital.getTotalAreaSize());
+    }*/
 }

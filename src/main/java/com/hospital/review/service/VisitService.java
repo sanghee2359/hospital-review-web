@@ -24,7 +24,7 @@ public class VisitService {
 
 
 
-    public void createVisit(VisitCreateRequest dto, String userName, String code) {
+    public void createVisit(VisitCreateRequest dto, String userName) {
         // hospital
         Hospital hospital = hospitalRepository.findById(dto.getHospitalId())
                 .orElseThrow(()->new HospitalReviewAppException(ErrorCode.HOSPITAL_NOT_FOUNDED,
