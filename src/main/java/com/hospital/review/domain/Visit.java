@@ -1,5 +1,6 @@
 package com.hospital.review.domain;
 
+import com.hospital.review.domain.dto.VisitResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,4 +29,12 @@ public class Visit {
     private String disease;
 
     private float amount; //진료비
+    public VisitResponse toResponse() {
+        return VisitResponse.builder()
+                .hospitalName(this.hospitalId.getHospitalName())
+                .userName(this.userId.getUserName())
+                .disease(this.disease)
+                .amount(this.amount)
+                .build();
+    }
 }
