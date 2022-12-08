@@ -1,5 +1,8 @@
 package com.hospital.review.controller;
 
+import com.hospital.review.domain.Hospital;
+import com.hospital.review.domain.Visit;
+import com.hospital.review.domain.dto.HospitalReadResponse;
 import com.hospital.review.domain.dto.VisitCreateRequest;
 import com.hospital.review.domain.dto.VisitResponse;
 import com.hospital.review.service.VisitService;
@@ -19,6 +22,20 @@ import java.util.List;
 @Slf4j
 public class VisitController {
     private final VisitService visitService;
+
+    // GET /api/v1/hospitals/{id}
+    @GetMapping("users/{id}")
+    public ResponseEntity<List<VisitResponse>> FindByUserId(@PathVariable Long id){
+        List<VisitResponse> visitResponse = visitService.findAllByUserId(id);
+        return ResponseEntity.ok().body(visitResponse);
+    }
+    @GetMapping("hospitals/{id}")
+    public ResponseEntity<List<VisitResponse>> FindByHospitalId(@PathVariable Long id){
+        List<VisitResponse> visitResponse = visitService.findAllByHospitalId(id);
+        // dto로 매핑하는 로직 -> controller에서 하기
+//        VisitResponse visitResponse = Visit.toResponse();
+        return ResponseEntity.ok().body(visitResponse);
+    }
     @GetMapping
     public ResponseEntity<List<VisitResponse>> list(Pageable pageable) {
         return ResponseEntity.ok().body(visitService.findAllByPage(pageable));
