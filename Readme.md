@@ -35,9 +35,6 @@ ec2-3-38-172-197.ap-northeast-2.compute.amazonaws.com:8080/api/v1/hospitals/{id}
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.5'
 
 }
-```
-
-### 프로젝트 소개
 
 ## REST API
 ### 병원 리뷰 생성기능 && 특정 병원의 리뷰를 조회하는 기능
