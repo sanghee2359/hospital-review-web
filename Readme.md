@@ -12,6 +12,7 @@ ec2-3-38-172-197.ap-northeast-2.compute.amazonaws.com:8080/api/v1/hospitals/{id}
 데이터 출처 : https://www.localdata.go.kr/devcenter/dataDown.do?menuNo=20001
 
 병원 데이터와 의원 데이터 결합, 총 121,005개의 데이터 (병원 6992개 + 의원 114013개)
+
 데이터 형식 에러 튜플 2개 제외, 총 121003개 데이터
 
 - Gradle 빌드
