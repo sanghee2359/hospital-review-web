@@ -3,13 +3,17 @@
 ![diagram.png](diagram.png)
 ## 기술 스택 및 배포 주소
 `Java 11`· `Spring Boot 2.7.5`· `Spring Security`· `Jdbc`· `JPA`· `MySQL 8.0`·`AWS`· `Docker`
+
 접속주소:
 ec2-3-38-172-197.ap-northeast-2.compute.amazonaws.com:8080/api/v1/reviews/{id}
 ec2-3-38-172-197.ap-northeast-2.compute.amazonaws.com:8080/api/v1/hospitals/{id}
+
 ## 병·의원 데이터 정보 및 라이브러리
 데이터 출처 : https://www.localdata.go.kr/devcenter/dataDown.do?menuNo=20001
+
 병원 데이터와 의원 데이터 결합, 총 121,005개의 데이터 (병원 6992개 + 의원 114013개)
 데이터 형식 에러 튜플 2개 제외, 총 121003개 데이터
+
 - Gradle 빌드
   ```
   dependencies {
@@ -31,6 +35,7 @@ ec2-3-38-172-197.ap-northeast-2.compute.amazonaws.com:8080/api/v1/hospitals/{id}
 
 }
 ```
+
 ### 프로젝트 소개
 
 ## REST API
